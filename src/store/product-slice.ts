@@ -65,7 +65,6 @@ const productsSlice = createSlice({
       state.categoryFilter = ''
     },
     setCategoryFilter: (state, action: PayloadAction<string>) => {
-      console.log(action, 'ACTION')
       state.categoryFilter = action.payload
       fetchProducts({ category: action.payload })
     },

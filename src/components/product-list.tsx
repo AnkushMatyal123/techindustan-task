@@ -14,6 +14,7 @@ import {
 import { setCategoryFilter, setSearchTerm } from "@/store/product-slice";
 import { Input } from "./ui/input";
 import ProductCard from "./product-card";
+import ProductNotFound from "./product-not-found";
 
 export default function ProductList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -66,9 +67,13 @@ export default function ProductList() {
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
         >
           <AnimatePresence>
-            {items.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {items?.length > 0 ? (
+              items.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            ) : (
+              <ProductNotFound />
+            )}
           </AnimatePresence>
         </motion.div>
       )}
